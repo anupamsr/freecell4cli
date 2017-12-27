@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(freecell4cli)
+project(lin_freecell)
+
+find_package(Curses)
+include_directories(${CURSES_INCLUDE_DIRS})
+
 add_executable(${PROJECT_NAME}
-    "main.cpp"
-    "Card.h"
-    "Deck.h"
-    "Board.h"
-    "Card.cpp"
-    "Deck.cpp"
-    "Board.cpp"
+    "lin_freecell.cpp"
+    "lin_freecell.h"
     )
+
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
