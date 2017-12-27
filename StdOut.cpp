@@ -1,4 +1,4 @@
-#include "Console.h"
+#include "StdOut.h"
 #include "Board.h"
 #include <iostream>
 
@@ -10,9 +10,9 @@
 // {
 //    return std::max(first, Max(args ...));
 // }
-Console::Console() {}
+StdOut::StdOut() {}
 
-void Console::Paint(const FreeCell::Board& _board) const
+void StdOut::Paint(const FreeCell::Board& _board) const
 {
     std::cout << "Free cells:" << std::endl;
     for (size_t i = 0; i < 4; ++i)
@@ -171,7 +171,7 @@ void Console::Paint(const FreeCell::Board& _board) const
     std::cout << std::endl;
 }
 
-void Console::Paint(const FreeCell::Card& _card) const
+void StdOut::Paint(const FreeCell::Card& _card) const
 {
     auto rank = _card.GetRank();
 

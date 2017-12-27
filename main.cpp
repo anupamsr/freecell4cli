@@ -1,7 +1,11 @@
+#ifdef BUILD_WITH_CURSES
+# include "Curses.h"
+#else // ifdef BUILD_WITH_CURSES
+# include "StdOut.h"
+#endif // ifdef BUILD_WITH_CURSES
+
 #include <stdexcept>
 #include "Board.h"
-#include "Console.h"
-
 using namespace FreeCell;
 Deck GetFreecellDeck()
 {
@@ -26,7 +30,12 @@ int main()
     Deck  deck = GetFreecellDeck();
     deck.Shuffle();
     board.Place(deck);
-    Console console;
-    board.Paint(console);
+
+#ifdef BUILD_WITH_CURSES
+    Curses painter;
+#else // ifdef BUILD_WITH_CURSES
+    StdOut painter;
+#endif // ifdef BUILD_WITH_CURSES
+    board.Paint(painter);
     return 0;
 }

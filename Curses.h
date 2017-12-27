@@ -1,14 +1,14 @@
-#ifndef CONSOLE_H
-#define CONSOLE_H
+#ifndef CURSES_H
+#define CURSES_H
 
 #include "Painter.h"
 
-class Console : public Painter
+class Curses : public Painter
 {
 public:
-    Console();
+    Curses();
     void Paint(const FreeCell::Board& _card) const;
     void Paint(const FreeCell::Card& _board) const;
 };
 
-#endif // CONSOLE_H
+#endif // CURSES_H
