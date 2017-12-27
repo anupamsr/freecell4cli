@@ -33,4 +33,19 @@ void Board::Paint(const Painter& _painter) const
 {
     _painter.Paint(*this);
 }
+
+std::vector<std::deque<Card> > Board::GetColumns() const
+{
+    return mColumns;
+}
+
+std::vector<std::deque<Card> > Board::GetFreecell() const
+{
+    return mFreecell;
+}
+
+std::vector<std::deque<Card> > Board::GetHomecell() const
+{
+    return mHomecell;
+}
 }

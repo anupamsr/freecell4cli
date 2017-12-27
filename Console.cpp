@@ -1,4 +1,4 @@
-#include "Painter.h"
+#include "Console.h"
 #include "Board.h"
 #include <iostream>
 
@@ -10,16 +10,16 @@
 // {
 //    return std::max(first, Max(args ...));
 // }
-Painter::Painter() {}
+Console::Console() {}
 
-void Painter::Paint(const FreeCell::Board& _board) const
+void Console::Paint(const FreeCell::Board& _board) const
 {
     std::cout << "Free cells:" << std::endl;
     for (size_t i = 0; i < 4; ++i)
     {
-        if (_board.mFreecell[i].size() > 0)
+        if (_board.GetFreecell()[i].size() > 0)
         {
-            Paint(_board.mFreecell[i].front());
+            Paint(_board.GetFreecell()[i].front());
         }
         else
         {
@@ -33,9 +33,9 @@ void Painter::Paint(const FreeCell::Board& _board) const
     std::cout << "Home cells:" << std::endl;
     for (size_t i = 0; i < 4; ++i)
     {
-        if (_board.mHomecell[i].size() > 0)
+        if (_board.GetHomecell()[i].size() > 0)
         {
-            Paint(_board.mHomecell[i].front());
+            Paint(_board.GetHomecell()[i].front());
         }
         else
         {
@@ -48,37 +48,37 @@ void Painter::Paint(const FreeCell::Board& _board) const
     std::cout << std::endl;
     std::cout << "Board:" << std::endl;
 
-    //    size_t max_length =
-    //        Max(_board.mColumns[0].size(),
-    //            _board.mColumns[1].size(),
-    //            _board.mColumns[2].size(),
-    //            _board.mColumns[3].size(),
-    //            _board.mColumns[4].size(),
-    //            _board.mColumns[5].size(),
-    //            _board.mColumns[6].size(),
-    //            _board.mColumns[7].size());
-    //        std::max(_board.mColumns[0].size(),
-    //            std::max(_board.mColumns[1].size(),
-    //                std::max(_board.mColumns[2].size(),
-    //                    std::max(_board.mColumns[3].size(),
-    //                          std::max(_board.mColumns[4].size(),
-    //                                std::max(_board.mColumns[5].size(),
-    //                                      std::max(_board.mColumns[6].size(), _board.mColumns[7].size())))))));
-    auto it0 = _board.mColumns[0].cbegin();
-    auto it1 = _board.mColumns[1].cbegin();
-    auto it2 = _board.mColumns[2].cbegin();
-    auto it3 = _board.mColumns[3].cbegin();
-    auto it4 = _board.mColumns[4].cbegin();
-    auto it5 = _board.mColumns[5].cbegin();
-    auto it6 = _board.mColumns[6].cbegin();
-    auto it7 = _board.mColumns[7].cbegin();
+    // size_t max_length =
+    //     Max(_board.mColumns[0].size(),
+    //         _board.mColumns[1].size(),
+    //         _board.mColumns[2].size(),
+    //         _board.mColumns[3].size(),
+    //         _board.mColumns[4].size(),
+    //         _board.mColumns[5].size(),
+    //         _board.mColumns[6].size(),
+    //         _board.mColumns[7].size());
+    //     std::max(_board.mColumns[0].size(),
+    //         std::max(_board.mColumns[1].size(),
+    //             std::max(_board.mColumns[2].size(),
+    //                 std::max(_board.mColumns[3].size(),
+    //                       std::max(_board.mColumns[4].size(),
+    //                             std::max(_board.mColumns[5].size(),
+    //                                   std::max(_board.mColumns[6].size(), _board.mColumns[7].size())))))));
+    auto columns = _board.GetColumns();
+    auto it0     = columns[0].cbegin();
+    auto it1     = columns[1].cbegin();
+    auto it2     = columns[2].cbegin();
+    auto it3     = columns[3].cbegin();
+    auto it4     = columns[4].cbegin();
+    auto it5     = columns[5].cbegin();
+    auto it6     = columns[6].cbegin();
+    auto it7     = columns[7].cbegin();
     for (size_t i = 0;
          i < 8 &&
-         (it0 != _board.mColumns[0].cend() || it1 != _board.mColumns[1].cend() || it2 != _board.mColumns[2].cend() ||
-          it3 != _board.mColumns[3].cend() || it4 != _board.mColumns[4].cend() || it5 != _board.mColumns[5].cend() ||
-          it6 != _board.mColumns[6].cend() || it7 != _board.mColumns[7].cend()); ++i)
+         (it0 != columns[0].cend() || it1 != columns[1].cend() || it2 != columns[2].cend() || it3 != columns[3].cend() ||
+          it4 != columns[4].cend() || it5 != columns[5].cend() || it6 != columns[6].cend() || it7 != columns[7].cend()); ++i)
     {
-        if (it0 != _board.mColumns[0].cend())
+        if (it0 != columns[0].cend())
         {
             Paint(*it0);
             ++it0;
@@ -89,7 +89,7 @@ void Painter::Paint(const FreeCell::Board& _board) const
         }
 
         std::cout << " ";
-        if (it1 != _board.mColumns[1].cend())
+        if (it1 != columns[1].cend())
         {
             Paint(*it1);
             ++it1;
@@ -100,7 +100,7 @@ void Painter::Paint(const FreeCell::Board& _board) const
         }
 
         std::cout << " ";
-        if (it2 != _board.mColumns[2].cend())
+        if (it2 != columns[2].cend())
         {
             Paint(*it2);
             ++it2;
@@ -111,7 +111,7 @@ void Painter::Paint(const FreeCell::Board& _board) const
         }
 
         std::cout << " ";
-        if (it3 != _board.mColumns[3].cend())
+        if (it3 != columns[3].cend())
         {
             Paint(*it3);
             ++it3;
@@ -122,7 +122,7 @@ void Painter::Paint(const FreeCell::Board& _board) const
         }
 
         std::cout << " ";
-        if (it4 != _board.mColumns[4].cend())
+        if (it4 != columns[4].cend())
         {
             Paint(*it4);
             ++it4;
@@ -133,7 +133,7 @@ void Painter::Paint(const FreeCell::Board& _board) const
         }
 
         std::cout << " ";
-        if (it5 != _board.mColumns[5].cend())
+        if (it5 != columns[5].cend())
         {
             Paint(*it5);
             ++it5;
@@ -144,7 +144,7 @@ void Painter::Paint(const FreeCell::Board& _board) const
         }
 
         std::cout << " ";
-        if (it6 != _board.mColumns[6].cend())
+        if (it6 != columns[6].cend())
         {
             Paint(*it6);
             ++it6;
@@ -155,7 +155,7 @@ void Painter::Paint(const FreeCell::Board& _board) const
         }
 
         std::cout << " ";
-        if (it7 != _board.mColumns[7].cend())
+        if (it7 != columns[7].cend())
         {
             Paint(*it7);
             ++it7;
@@ -171,7 +171,7 @@ void Painter::Paint(const FreeCell::Board& _board) const
     std::cout << std::endl;
 }
 
-void Painter::Paint(const FreeCell::Card& _card) const
+void Console::Paint(const FreeCell::Card& _card) const
 {
     auto rank = _card.GetRank();
 

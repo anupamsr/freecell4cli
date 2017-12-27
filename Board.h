@@ -12,14 +12,16 @@ class Board
 {
 public:
     Board();
-    void Place(const Deck& _deck);
-    void Paint(const Painter& _painter) const;
+    void                           Place(const Deck& _deck);
+    void                           Paint(const Painter& _painter) const;
+    std::vector<std::deque<Card> > GetColumns() const;
+    std::vector<std::deque<Card> > GetFreecell() const;
+    std::vector<std::deque<Card> > GetHomecell() const;
 
 private:
     std::vector<std::deque<Card> > mColumns;
     std::vector<std::deque<Card> > mFreecell;
     std::vector<std::deque<Card> > mHomecell;
-    friend void Painter::Paint(const Board& _board) const;
 };
 }
 #endif // BOARD_H

@@ -1,5 +1,6 @@
 #include <stdexcept>
 #include "Board.h"
+#include "Console.h"
 
 using namespace FreeCell;
 Deck GetFreecellDeck()
@@ -25,7 +26,7 @@ int main()
     Deck  deck = GetFreecellDeck();
     deck.Shuffle();
     board.Place(deck);
-    Painter painter;
-    board.Paint(painter);
+    Console console;
+    board.Paint(console);
     return 0;
 }

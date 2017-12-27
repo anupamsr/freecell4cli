@@ -28,7 +28,6 @@ public:
 private:
     eCardSuit mSuit;
     eCardRank mRank;
-    friend void Painter::Paint(const Card& _board) const;
 };
 }
 

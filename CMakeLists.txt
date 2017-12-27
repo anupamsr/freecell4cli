@@ -10,8 +10,9 @@ add_executable(${PROJECT_NAME}
     "Deck.h"
     "Board.h"
     "Painter.h"
+    "Console.h"
     "Card.cpp"
     "Deck.cpp"
     "Board.cpp"
-    "Painter.cpp"
+    "Console.cpp"
     )
