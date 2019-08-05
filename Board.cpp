@@ -1,12 +1,12 @@
 #include "Board.h"
 #include "Deck.h"
 
-namespace LIBCARD
+namespace FREECELL
 {
-Board::Board()
-{
-    Deck deck;
+Board::Board() {}
 
-    m_playarea.Add(deck);
+void Board::Place(LIBCARD::Deck& _deck)
+{
+    m_playarea.Add(_deck);
 }
 }

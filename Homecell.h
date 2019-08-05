@@ -4,9 +4,9 @@
 #include "CardCollection.h"
 #include "Constants.h"
 
-namespace LIBCARD
+namespace FREECELL
 {
-class Homecell : public CardCollection<HOME_CELL_SIZE>
+class Homecell : public LIBCARD::CardCollection<HOME_CELL_SIZE>
 {
     public:
         Homecell() {}

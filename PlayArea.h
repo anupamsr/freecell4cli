@@ -5,14 +5,14 @@
 #include "Deck.h"
 #include "Constants.h"
 
-namespace LIBCARD
+namespace FREECELL
 {
-class PlayArea : public CardCollection<PLAY_AREA_SIZE>
+class PlayArea : public LIBCARD::CardCollection<PLAY_AREA_SIZE>
 {
     public:
         PlayArea();
         ~PlayArea();
-        void Add(Deck& _deck);
+        void Add(LIBCARD::Deck& _deck);
 
     private:
 };

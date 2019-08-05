@@ -21,6 +21,15 @@ class Card
         CardRank GetRank() const;
         void     SetSuit(const CardSuit& _suit);
         void     SetRank(const CardRank& _rank);
+        bool     operator==(const Card& _card)
+        {
+            return m_suit == _card.m_suit && m_rank == _card.m_rank;
+        }
+
+        bool operator!=(const Card& _card)
+        {
+            return !(this == &_card);
+        }
 
     private:
         CardSuit m_suit;

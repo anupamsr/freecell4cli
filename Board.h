@@ -5,12 +5,13 @@
 #include "Homecell.h"
 #include "PlayArea.h"
 
-namespace LIBCARD
+namespace FREECELL
 {
 class Board
 {
     public:
         Board();
+        void Place(LIBCARD::Deck& _deck);
 
     private:
         Freecell m_freecell;

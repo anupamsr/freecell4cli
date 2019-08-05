@@ -3,6 +3,7 @@
 
 #include "Card.h"
 #include <vector>
+#include <random>
 
 namespace LIBCARD
 {
@@ -93,6 +94,21 @@ struct Deck
         AddCard(Card(CardSuit::DIAMONDS, CardRank::JACK));
         AddCard(Card(CardSuit::DIAMONDS, CardRank::QUEEN));
         AddCard(Card(CardSuit::DIAMONDS, CardRank::KING));
+    }
+
+    void Shuffle()
+    {
+        //        for i from 0 to n−2 do
+        //             j ← random integer such that i ≤ j < n
+        //             exchange a[i] and a[j]
+        std::default_random_engine generator;
+
+        for (size_t i = 0; i < m_cards.size() - 2; ++i)
+        {
+            std::uniform_int_distribution<size_t> distribution(i, m_cards.size() - 1);
+            size_t j = distribution(generator);
+            std::swap(m_cards[i], m_cards[j]);
+        }
     }
 
     std::vector<Card> m_cards;

@@ -14,4 +14,6 @@ add_executable(${PROJECT_NAME}
     "PlayArea.h"
     "PlayArea.cpp"
     "Constants.h"
+    "Command.h"
+    "MoveCommand.h"
     )
