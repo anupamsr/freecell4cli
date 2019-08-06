@@ -11,6 +11,7 @@ class Input
          * @param _input
          */
         virtual void GetString(std::string& _input) const = 0;
+        virtual ~Input() {}
 };
 
-#endif // INPUT_H
+#endif // ifndef INPUT_H

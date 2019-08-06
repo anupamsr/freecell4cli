@@ -5,7 +5,9 @@ namespace FREECELL
 {
 class Command
 {
-    virtual bool Execute() = 0;
+    public:
+        virtual bool Execute() = 0;
+        virtual ~Command() {}
 };
 }
 
