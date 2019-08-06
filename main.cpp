@@ -1,5 +1,6 @@
 #include "MoveCommand.h"
-#include "Screen.h"
+#include "GameScreen.h"
+#include "HelpScreen.h"
 #include "StdIn.h"
 
 int main()
@@ -9,32 +10,37 @@ int main()
 
     d.Shuffle();
     b.Place(d);
-    Screen s;
-    StdIn  in;
+    GameScreen g;
+    HelpScreen h;
+    StdIn in;
     while (true)
     {
-        s.Update(b);
-        s.Draw();
+        g.Update(b);
+        g.Draw();
         std::string input;
 
         do
         {
-            s.ShowPrompt();
+            g.ShowPrompt();
             in.GetString(input);
         } while (input.empty());
         if (input[0] == 'q')
         {
             break;
         }
+        if (input[0] == 'h')
+        {
+            h.Draw();
+        }
 
         std::string err_msg;
         bool success = b.Process(input, err_msg);
         if (!success)
         {
-            s.ShowStatus(err_msg);
+            g.ShowStatus(err_msg);
         }
     }
 
-    s.ShowStatus("Thank you!");
+    g.ShowStatus("Thank you!");
     return 0;
 }

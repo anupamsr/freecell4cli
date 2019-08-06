@@ -1,21 +1,22 @@
-#ifndef SCREEN_H_
-#define SCREEN_H_
+#ifndef GAMESCREEN_H_
+#define GAMESCREEN_H_
 
+#include "Output.h"
 #include "Board.h"
 #include <vector>
 #include <iostream>
 
-class Screen
+class GameScreen : public Output
 {
     public:
-        Screen() {}
+        GameScreen() {}
 
         void Update(const FREECELL::Board& _board)
         {
             _board.Update(m_display);
         }
 
-        void Draw()
+        void Draw() const
         {
             for (size_t i = 0; i < m_display[0].size(); ++i)
             {
@@ -66,5 +67,4 @@ class Screen
         std::vector<std::vector<LIBCARD::Card> > m_display;
 };
 
-
-#endif // ifndef SCREEN_H_
+#endif // ifndef GAMESCREEN_H_
