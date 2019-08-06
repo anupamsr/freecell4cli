@@ -101,7 +101,8 @@ struct Deck
         //        for i from 0 to n−2 do
         //             j ← random integer such that i ≤ j < n
         //             exchange a[i] and a[j]
-        std::default_random_engine generator;
+        std::random_device device;
+        std::mt19937 generator(device());
 
         for (size_t i = 0; i < m_cards.size() - 2; ++i)
         {

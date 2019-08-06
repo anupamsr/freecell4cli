@@ -16,19 +16,31 @@ class CardCollection
 
         ~CardCollection() {}
 
-        Card Get(const int& _from_pos_1, const int& _from_pos_2) const
+        Card Get(const size_t& _from_pos_1, const size_t& _from_pos_2) const
         {
-            return m_cards[_from_pos_1][_from_pos_2];
+            try
+            {
+                return m_cards.at(_from_pos_1).at(_from_pos_2);
+            }
+            catch (...)
+            {
+                return Card(CardSuit::NOTHING, CardRank::NOTHING);
+            }
         }
 
-        void Insert(const Card& _card, const int& _to_pos_1, const int& _to_pos_2)
+        void Insert(const Card& _card, const size_t& _to_pos_1, const size_t& _to_pos_2)
         {
             m_cards[_to_pos_1].insert(m_cards[_to_pos_1].begin() + _to_pos_2, _card);
         }
 
-        void Remove(const int& _from_pos_1, const int& _from_pos_2)
+        void Remove(const size_t& _from_pos_1, const size_t& _from_pos_2)
         {
             m_cards[_from_pos_1].erase(m_cards[_from_pos_1].begin() + _from_pos_2);
+        }
+
+        auto Size(const size_t& _from_pos_1) const
+        {
+            return m_cards[_from_pos_1].size();
         }
 
     protected:

@@ -16,4 +16,7 @@ add_executable(${PROJECT_NAME}
     "Constants.h"
     "Command.h"
     "MoveCommand.h"
+    "Screen.h"
+    "Input.h"
+    "StdIn.h"
     )
