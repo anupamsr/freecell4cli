@@ -11,12 +11,12 @@ int main()
     d.Shuffle();
     b.Place(d);
     GameScreen g;
+    g.Update(b);
+    g.Draw();
     HelpScreen h;
     StdIn in;
     while (true)
     {
-        g.Update(b);
-        g.Draw();
         std::string input;
 
         do
@@ -28,16 +28,23 @@ int main()
         {
             break;
         }
-        if (input[0] == 'h')
+        else if (input[0] == 'h')
         {
             h.Draw();
         }
-
-        std::string err_msg;
-        bool success = b.Process(input, err_msg);
-        if (!success)
+        else if (input[0] == 'm')
         {
-            g.ShowStatus(err_msg);
+            std::string err_msg;
+            bool success = b.Process(input, err_msg);
+            if (success)
+            {
+                g.Update(b);
+                g.Draw();
+            }
+            else
+            {
+                g.ShowStatus(err_msg);
+            }
         }
     }
 

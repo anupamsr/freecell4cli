@@ -21,4 +21,5 @@ add_executable(${PROJECT_NAME}
     "StdIn.h"
     "Output.h"
     "HelpScreen.h"
+    "GameScreen.cpp"
     )
