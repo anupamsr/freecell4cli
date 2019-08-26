@@ -9,10 +9,11 @@
 class GameScreen : public Output
 {
     private:
-        static std::string GameScreen::GetOutputStr(const LIBCARD::Card& _card);
+        static std::string GetOutputStr(const LIBCARD::Card& _card);
 
     public:
-        GameScreen() {}
+        GameScreen()
+            : m_display() {}
 
         void Update(const FREECELL::Board& _board);
         void Draw() const;

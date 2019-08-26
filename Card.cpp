@@ -27,4 +27,14 @@ void Card::SetRank(const CardRank& _rank)
 {
     m_rank = _rank;
 }
+
+bool Card::operator==(const Card& _card)
+{
+    return m_suit == _card.m_suit && m_rank == _card.m_rank;
+}
+
+bool Card::operator!=(const Card& _card)
+{
+    return !(this == &_card);
+}
 }

@@ -1,11 +1,14 @@
 #include "Board.h"
 #include "Deck.h"
-#include "MoveCommand.h"
+#include "ValidMoveCommand.h"
 
 namespace FREECELL
 {
 Board::Board()
-    : m_is_updatable(true) {}
+    : m_freecell(),
+    m_homecell(),
+    m_playarea(),
+    m_is_updatable(true) {}
 
 void Board::Update(std::vector<std::vector<LIBCARD::Card> >& _display) const
 {
@@ -74,18 +77,164 @@ void Board::Place(LIBCARD::Deck& _deck)
 
 bool Board::Process(const std::string& _input, std::string& _err_msg)
 {
-    MoveCommand<PlayArea, PlayArea> m(m_playarea, 1, 1, m_playarea, 2, 2);
-
-    if (m.Execute())
+    // From
+    if (_input.size() > 2)
     {
-        m_is_updatable = true;
+        if (_input[1] == '1' || _input[1] == '2' || _input[1] == '3' || _input[1] == '4' || _input[1] == '5' || _input[1] == '6' || _input[1] == '7' || _input[1] == '8')
+        {
+            // playarea position
+            int first = _input[1] - '0';
+            // to
+            if (_input.size() == 4 && _input[2] == 'f')
+            {
+                // freecell
+                if (_input[3] == '1' || _input[3] == '2' || _input[3] == '3' || _input[3] == '4')
+                {
+                    // position
+                    int second = _input[3] - '0';
+                    ValidMoveCommand<PlayArea, Freecell> m(m_playarea, first, m_freecell, second);
+                    if (m.Execute())
+                    {
+                        m_is_updatable = true;
+                    }
+                    else
+                    {
+                        _err_msg = "Could not move";
+                        return false;
+                    }
+                }
+                else
+                {
+                    _err_msg = "Incorrect freecell position";
+                    return false;
+                }
+            }
+            else if (_input[2] == '1' || _input[2] == '2' || _input[2] == '3' || _input[2] == '4' || _input[2] == '5' || _input[2] == '6' || _input[2] == '7' || _input[2] == '8')
+            {
+                // playarea position
+                int second = _input[2] - '0';
+                ValidMoveCommand<PlayArea, PlayArea> m(m_playarea, first, m_playarea, second);
+                if (m.Execute())
+                {
+                    m_is_updatable = true;
+                }
+                else
+                {
+                    _err_msg = "Could not move";
+                    return false;
+                }
+            }
+            else if (_input[2] == 'h')
+            {
+                // homecell
+                int second = 0;
+                ValidMoveCommand<PlayArea, Homecell> m(m_playarea, first, m_homecell, second);
+                if (m.Execute())
+                {
+                    m_is_updatable = true;
+                }
+                else
+                {
+                    _err_msg = "Could not move";
+                    return false;
+                }
+            }
+            else
+            {
+                _err_msg = "Incorrect target";
+                return false;
+            }
+        }
+        else if (_input[1] == 'f')
+        {
+            // freecell
+            if (_input[2] == '1' || _input[2] == '2' || _input[2] == '3' || _input[2] == '4')
+            {
+                // position
+                int first = _input[2] - '0';
+                // to
+                if (_input.size() == 4 &&
+                    (_input[3] == '1' || _input[3] == '2' || _input[3] == '3' || _input[3] == '4' || _input[3] == '5' || _input[3] == '6' || _input[3] == '7' || _input[3] == '8'))
+                {
+                    // playarea position
+                    int second = _input[3] - '0';
+                    ValidMoveCommand<Freecell, PlayArea> m(m_freecell, first, m_playarea, second);
+                    if (m.Execute())
+                    {
+                        m_is_updatable = true;
+                    }
+                    else
+                    {
+                        _err_msg = "Could not move";
+                        return false;
+                    }
+                }
+                else if (_input.size() == 5 && _input[3] == 'f')
+                {
+                    // freecell
+                    if (_input[4] == '1' || _input[4] == '2' || _input[4] == '3' || _input[4] == '4')
+                    {
+                        // position
+                        int second = _input[3] - '0';
+                        ValidMoveCommand<Freecell, Freecell> m(m_freecell, first, m_freecell, second);
+                        if (m.Execute())
+                        {
+                            m_is_updatable = true;
+                        }
+                        else
+                        {
+                            _err_msg = "Could not move";
+                            return false;
+                        }
+                    }
+                }
+                else if (_input.size() == 4 && _input[3] == 'h')
+                {
+                    // homecell
+                    int second = 0;
+                    ValidMoveCommand<Freecell, Homecell> m(m_freecell, first, m_homecell, second);
+                    if (m.Execute())
+                    {
+                        m_is_updatable = true;
+                    }
+                    else
+                    {
+                        _err_msg = "Could not move";
+                        return false;
+                    }
+                }
+                else
+                {
+                    _err_msg = "Incorrect target";
+                    return false;
+                }
+            }
+            else
+            {
+                _err_msg = "Incorrect freecell position";
+                return false;
+            }
+        }
+        else
+        {
+            _err_msg = "Incorrect source";
+            return false;
+        }
     }
     else
     {
-        _err_msg = "Error moving";
+        _err_msg = "Incomplete command";
         return false;
     }
 
     return true;
+}
+
+void Board::Clear()
+{
+    m_freecell.Clear();
+    m_homecell.Clear();
+    m_playarea.Clear();
+    m_is_updatable = true;
 }
 }

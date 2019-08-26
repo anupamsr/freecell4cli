@@ -16,10 +16,11 @@ class StdIn : public Input
         virtual void GetString(std::string& _input) const
         {
             std::cin >> _input;
+            auto to_lower = [](const auto c) {
+                                return std::tolower(c);
+                            };
 
-            std::transform(_input.begin(), _input.end(), _input.begin(), [](unsigned char c) {
-            return std::tolower(c);
-        });
+            std::transform(_input.begin(), _input.end(), _input.begin(), to_lower);
         }
 
     private:

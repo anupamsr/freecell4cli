@@ -43,6 +43,11 @@ class CardCollection
             return m_cards[_from_pos_1].size();
         }
 
+        void Clear()
+        {
+            m_cards = std::vector<std::vector<Card> >(size, std::vector<Card>());
+        }
+
     protected:
         std::vector<std::vector<Card> > m_cards;
 };

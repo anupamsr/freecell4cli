@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 project(LibCard)
+
 add_executable(${PROJECT_NAME}
     "main.cpp"
     "Card.h"
@@ -22,4 +23,13 @@ add_executable(${PROJECT_NAME}
     "Output.h"
     "HelpScreen.h"
     "GameScreen.cpp"
+    "ValidMoveCommand.h"
+    "Deck.cpp"
     )
+
+
+if(MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4)
+else()
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Werror -Weffc++)
+endif()

@@ -34,7 +34,7 @@ void GameScreen::ShowPrompt()
 
 std::string GameScreen::GetOutputStr(const LIBCARD::Card& _card)
 {
-    LIBCARD::CardRank rank = _card.GetRank();
+    auto rank = _card.GetRank();
     std::string output;
 
     switch (rank) {
@@ -98,7 +98,7 @@ std::string GameScreen::GetOutputStr(const LIBCARD::Card& _card)
         output += "  ";
     }
 
-    LIBCARD::CardSuit suit = _card.GetSuit();
+    auto suit = _card.GetSuit();
 
     switch (suit) {
     case LIBCARD::CardSuit::DIAMONDS:

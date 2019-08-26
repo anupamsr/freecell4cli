@@ -21,14 +21,12 @@ class Card
         CardRank GetRank() const;
         void     SetSuit(const CardSuit& _suit);
         void     SetRank(const CardRank& _rank);
-        bool     operator==(const Card& _card)
+        bool     operator==(const Card& _card);
+        bool     operator!=(const Card& _card);
+        template<CardSuit suit, CardRank rank>
+        bool     IsSameAs()
         {
-            return m_suit == _card.m_suit && m_rank == _card.m_rank;
-        }
-
-        bool operator!=(const Card& _card)
-        {
-            return !(this == &_card);
+            return m_suit == suit && m_rank == rank;
         }
 
     private:
