@@ -19,7 +19,6 @@ class StdIn : public Input
             auto to_lower = [](const auto c) {
                                 return std::tolower(c);
                             };
-
             std::transform(_input.begin(), _input.end(), _input.begin(), to_lower);
         }
 

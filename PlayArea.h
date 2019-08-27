@@ -18,5 +18,4 @@ class PlayArea : public LIBCARD::CardCollection<PLAY_AREA_SIZE>
 };
 }
 
-
 #endif // ifndef PLAYAREA_H_

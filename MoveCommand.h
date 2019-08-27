@@ -10,7 +10,7 @@ template<typename From, typename To>
 class MoveCommand : public Command
 {
     public:
-        MoveCommand(From& _from, const int& _from_pos_1, const int& _from_pos_2,  To& _to, const int& _to_pos_1, const int& _to_pos_2)
+        MoveCommand(From& _from, const size_t& _from_pos_1, const size_t& _from_pos_2, To& _to, const size_t& _to_pos_1, const size_t& _to_pos_2)
             : m_from(_from),
             m_from_pos_1(_from_pos_1),
             m_from_pos_2(_from_pos_2),
@@ -34,11 +34,11 @@ class MoveCommand : public Command
 
     private:
         From& m_from;
-        int m_from_pos_1;
-        int m_from_pos_2;
+        size_t m_from_pos_1;
+        size_t m_from_pos_2;
         To& m_to;
-        int m_to_pos_1;
-        int m_to_pos_2;
+        size_t m_to_pos_1;
+        size_t m_to_pos_2;
 };
 }
 

@@ -29,11 +29,17 @@ template<typename From, typename To>
 class ValidMoveCommand : public Command
 {
     public:
-        ValidMoveCommand(From& _from, const int& _from_pos, To& _to, const int& _to_pos)
+        ValidMoveCommand(From& _from, const size_t& _from_pos, To& _to, const size_t& _to_pos)
             : m_from(_from),
             m_from_pos(_from_pos),
             m_to(_to),
             m_to_pos(_to_pos) {}
+
+        ValidMoveCommand(From& _from, const size_t& _from_pos, To& _to)
+            : m_from(_from),
+            m_from_pos(_from_pos),
+            m_to(_to),
+            m_to_pos(0) {}
 
         bool Execute()
         {
@@ -47,15 +53,45 @@ class ValidMoveCommand : public Command
             auto m_from_pos_2 = m_from.Size(m_from_pos_1) - 1;
             auto from_card    = m_from.Get(m_from_pos_1, m_from_pos_2);
             auto from_color   = GetColor(from_card.GetSuit());
-            auto m_to_pos_1   = m_to_pos - 1;
-            auto m_to_pos_2   = static_cast<int>(m_to.Size(m_to_pos_1));
-            if (m_to.Size(m_to_pos_1) != 0)
+            auto m_to_pos_1   = 0;
+            auto m_to_pos_2   = 0;
+            if (m_to_pos == 0)
             {
-                auto to_card  = m_to.Get(m_to_pos_1, m_to_pos_2);
-                auto to_color = GetColor(to_card.GetSuit());
-                if (from_color == to_color)
-                {
+                switch (from_card.GetSuit()) {
+                case LIBCARD::CardSuit::CLUBS:
+                    m_to_pos_1 = 0;
+                    break;
+
+                case LIBCARD::CardSuit::HEARTS:
+                    m_to_pos_1 = 1;
+                    break;
+
+                case LIBCARD::CardSuit::SPADES:
+                    m_to_pos_1 = 2;
+                    break;
+
+                case LIBCARD::CardSuit::DIAMONDS:
+                    m_to_pos_1 = 3;
+                    break;
+
+                default:
                     return false;
+                }
+
+                m_to_pos_2 = m_to.Size(m_to_pos_1);
+            }
+            else
+            {
+                m_to_pos_1 = m_to_pos - 1;
+                m_to_pos_2 = m_to.Size(m_to_pos_1);
+                if (m_to.Size(m_to_pos_1) != 0)
+                {
+                    auto to_card  = m_to.Get(m_to_pos_1, m_to_pos_2);
+                    auto to_color = GetColor(to_card.GetSuit());
+                    if (from_color == to_color)
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -64,9 +100,9 @@ class ValidMoveCommand : public Command
 
     private:
         From& m_from;
-        int m_from_pos;
+        size_t m_from_pos;
         To& m_to;
-        int m_to_pos;
+        size_t m_to_pos;
 };
 }
 

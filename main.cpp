@@ -20,7 +20,6 @@ int main()
 {
     LIBCARD::Deck d;
     auto jocker = LIBCARD::Card(LIBCARD::CardSuit::JOCKER, LIBCARD::CardRank::JOCKER);
-
     d.RemoveCard(jocker);
     auto rng = ProperlySeededRandomEngine();
     d.Shuffle(rng);

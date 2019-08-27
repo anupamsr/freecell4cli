@@ -83,7 +83,7 @@ bool Board::Process(const std::string& _input, std::string& _err_msg)
         if (_input[1] == '1' || _input[1] == '2' || _input[1] == '3' || _input[1] == '4' || _input[1] == '5' || _input[1] == '6' || _input[1] == '7' || _input[1] == '8')
         {
             // playarea position
-            int first = _input[1] - '0';
+            auto first = static_cast<size_t>(_input[1] - '0');
             // to
             if (_input.size() == 4 && _input[2] == 'f')
             {
@@ -91,7 +91,7 @@ bool Board::Process(const std::string& _input, std::string& _err_msg)
                 if (_input[3] == '1' || _input[3] == '2' || _input[3] == '3' || _input[3] == '4')
                 {
                     // position
-                    int second = _input[3] - '0';
+                    auto second = static_cast<size_t>(_input[3] - '0');
                     ValidMoveCommand<PlayArea, Freecell> m(m_playarea, first, m_freecell, second);
                     if (m.Execute())
                     {
@@ -112,7 +112,7 @@ bool Board::Process(const std::string& _input, std::string& _err_msg)
             else if (_input[2] == '1' || _input[2] == '2' || _input[2] == '3' || _input[2] == '4' || _input[2] == '5' || _input[2] == '6' || _input[2] == '7' || _input[2] == '8')
             {
                 // playarea position
-                int second = _input[2] - '0';
+                auto second = static_cast<size_t>(_input[2] - '0');
                 ValidMoveCommand<PlayArea, PlayArea> m(m_playarea, first, m_playarea, second);
                 if (m.Execute())
                 {
@@ -127,8 +127,7 @@ bool Board::Process(const std::string& _input, std::string& _err_msg)
             else if (_input[2] == 'h')
             {
                 // homecell
-                int second = 0;
-                ValidMoveCommand<PlayArea, Homecell> m(m_playarea, first, m_homecell, second);
+                ValidMoveCommand<PlayArea, Homecell> m(m_playarea, first, m_homecell);
                 if (m.Execute())
                 {
                     m_is_updatable = true;
@@ -151,13 +150,13 @@ bool Board::Process(const std::string& _input, std::string& _err_msg)
             if (_input[2] == '1' || _input[2] == '2' || _input[2] == '3' || _input[2] == '4')
             {
                 // position
-                int first = _input[2] - '0';
+                auto first = static_cast<size_t>(_input[2] - '0');
                 // to
                 if (_input.size() == 4 &&
                     (_input[3] == '1' || _input[3] == '2' || _input[3] == '3' || _input[3] == '4' || _input[3] == '5' || _input[3] == '6' || _input[3] == '7' || _input[3] == '8'))
                 {
                     // playarea position
-                    int second = _input[3] - '0';
+                    auto second = static_cast<size_t>(_input[3] - '0');
                     ValidMoveCommand<Freecell, PlayArea> m(m_freecell, first, m_playarea, second);
                     if (m.Execute())
                     {
@@ -175,7 +174,7 @@ bool Board::Process(const std::string& _input, std::string& _err_msg)
                     if (_input[4] == '1' || _input[4] == '2' || _input[4] == '3' || _input[4] == '4')
                     {
                         // position
-                        int second = _input[3] - '0';
+                        auto second = static_cast<size_t>(_input[3] - '0');
                         ValidMoveCommand<Freecell, Freecell> m(m_freecell, first, m_freecell, second);
                         if (m.Execute())
                         {
@@ -191,8 +190,7 @@ bool Board::Process(const std::string& _input, std::string& _err_msg)
                 else if (_input.size() == 4 && _input[3] == 'h')
                 {
                     // homecell
-                    int second = 0;
-                    ValidMoveCommand<Freecell, Homecell> m(m_freecell, first, m_homecell, second);
+                    ValidMoveCommand<Freecell, Homecell> m(m_freecell, first, m_homecell);
                     if (m.Execute())
                     {
                         m_is_updatable = true;
