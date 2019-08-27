@@ -46,28 +46,17 @@ class ValidMoveCommand : public Command
 
             auto m_from_pos_2 = m_from.Size(m_from_pos_1) - 1;
             auto from_card    = m_from.Get(m_from_pos_1, m_from_pos_2);
-            if (from_card.template IsSameAs<LIBCARD::CardSuit::NOTHING, LIBCARD::CardRank::NOTHING>())
+            auto from_color   = GetColor(from_card.GetSuit());
+            auto m_to_pos_1   = m_to_pos - 1;
+            auto m_to_pos_2   = static_cast<int>(m_to.Size(m_to_pos_1));
+            if (m_to.Size(m_to_pos_1) != 0)
             {
-                return false;
-            }
-
-            auto from_color = GetColor(from_card.GetSuit());
-            auto m_to_pos_1 = m_to_pos - 1;
-            if (m_to.Size(m_to_pos_1) == 0)
-            {
-                return false;
-            }
-
-            auto m_to_pos_2 = m_to.Size(m_to_pos_1) - 1;
-            auto to_card    = m_to.Get(m_to_pos_1, m_to_pos_2);
-            auto to_color   = GetColor(to_card.GetSuit());
-            if (from_color == to_color)
-            {
-                return false;
-            }
-            if (!to_card.template IsSameAs<LIBCARD::CardSuit::NOTHING, LIBCARD::CardRank::NOTHING>())
-            {
-                ++m_to_pos_2;
+                auto to_card  = m_to.Get(m_to_pos_1, m_to_pos_2);
+                auto to_color = GetColor(to_card.GetSuit());
+                if (from_color == to_color)
+                {
+                    return false;
+                }
             }
 
             return MoveCommand<From, To>(m_from, m_from_pos_1, m_from_pos_2, m_to, m_to_pos_1, m_to_pos_2).Execute();
