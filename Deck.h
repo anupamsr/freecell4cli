@@ -7,6 +7,7 @@
 
 namespace LIBCARD
 {
+const auto JOCKER_CARD = LIBCARD::Card(LIBCARD::CardSuit::JOCKER, LIBCARD::CardRank::JOCKER);
 struct Deck
 {
     Deck();

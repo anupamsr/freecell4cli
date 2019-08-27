@@ -53,8 +53,8 @@ class ValidMoveCommand : public Command
             auto m_from_pos_2 = m_from.Size(m_from_pos_1) - 1;
             auto from_card    = m_from.Get(m_from_pos_1, m_from_pos_2);
             auto from_color   = GetColor(from_card.GetSuit());
-            auto m_to_pos_1   = 0;
-            auto m_to_pos_2   = 0;
+            auto m_to_pos_1   = size_t(0);
+            auto m_to_pos_2   = size_t(0);
             if (m_to_pos == 0)
             {
                 switch (from_card.GetSuit()) {
@@ -83,15 +83,17 @@ class ValidMoveCommand : public Command
             else
             {
                 m_to_pos_1 = m_to_pos - 1;
-                m_to_pos_2 = m_to.Size(m_to_pos_1);
                 if (m_to.Size(m_to_pos_1) != 0)
                 {
+                    m_to_pos_2 = m_to.Size(m_to_pos_1) - 1;
                     auto to_card  = m_to.Get(m_to_pos_1, m_to_pos_2);
                     auto to_color = GetColor(to_card.GetSuit());
                     if (from_color == to_color)
                     {
                         return false;
                     }
+
+                    ++m_to_pos_2;
                 }
             }
 

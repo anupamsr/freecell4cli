@@ -19,8 +19,7 @@ auto ProperlySeededRandomEngine()->typename std::enable_if<!!N, T>::type
 int main()
 {
     LIBCARD::Deck d;
-    auto jocker = LIBCARD::Card(LIBCARD::CardSuit::JOCKER, LIBCARD::CardRank::JOCKER);
-    d.RemoveCard(jocker);
+    d.RemoveCard(LIBCARD::JOCKER_CARD);
     auto rng = ProperlySeededRandomEngine();
     d.Shuffle(rng);
     FREECELL::Board b;
@@ -51,7 +50,7 @@ int main()
         {
             b.Clear();
             d.Recreate();
-            d.RemoveCard(jocker);
+            d.RemoveCard(LIBCARD::JOCKER_CARD);
             d.Shuffle(rng);
             b.Place(d);
             g.Update(b);

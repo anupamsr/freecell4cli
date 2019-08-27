@@ -11,7 +11,7 @@ Deck::Deck()
 void Deck::Recreate()
 {
     m_cards.clear();
-    AddCard(Card(CardSuit::JOCKER, CardRank::JOCKER));
+    AddCard(JOCKER_CARD);
     AddCard(Card(CardSuit::CLUBS, CardRank::ACE));
     AddCard(Card(CardSuit::CLUBS, CardRank::TWO));
     AddCard(Card(CardSuit::CLUBS, CardRank::THREE));
