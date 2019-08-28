@@ -27,6 +27,50 @@ CardColor GetColor(const LIBCARD::CardSuit& _suit)
     }
 }
 
+LIBCARD::CardRank GetNextRank(const LIBCARD::CardRank& _rank)
+{
+    switch (_rank) {
+    case LIBCARD::CardRank::ACE:
+        return LIBCARD::CardRank::TWO;
+
+    case LIBCARD::CardRank::TWO:
+        return LIBCARD::CardRank::THREE;
+
+    case LIBCARD::CardRank::THREE:
+        return LIBCARD::CardRank::FOUR;
+
+    case LIBCARD::CardRank::FOUR:
+        return LIBCARD::CardRank::FIVE;
+
+    case LIBCARD::CardRank::FIVE:
+        return LIBCARD::CardRank::SIX;
+
+    case LIBCARD::CardRank::SIX:
+        return LIBCARD::CardRank::SEVEN;
+
+    case LIBCARD::CardRank::SEVEN:
+        return LIBCARD::CardRank::EIGHT;
+
+    case LIBCARD::CardRank::EIGHT:
+        return LIBCARD::CardRank::NINE;
+
+    case LIBCARD::CardRank::NINE:
+        return LIBCARD::CardRank::TEN;
+
+    case LIBCARD::CardRank::TEN:
+        return LIBCARD::CardRank::JACK;
+
+    case LIBCARD::CardRank::JACK:
+        return LIBCARD::CardRank::QUEEN;
+
+    case LIBCARD::CardRank::QUEEN:
+        return LIBCARD::CardRank::KING;
+
+    default:
+        return LIBCARD::CardRank::NOTHING;
+    }
+}
+
 template<typename From, typename To>
 class ValidMoveCommand : public Command
 {
@@ -51,18 +95,15 @@ public:
         auto from_card    = m_from.Get(m_from_pos_1, m_from_pos_2);
         auto from_color   = GetColor(from_card.GetSuit());
         auto m_to_pos_1   = m_to_pos - 1;
-        auto m_to_pos_2   = size_t(0);
+        auto m_to_pos_2   = m_to.Size(m_to_pos_1);
         if (m_to.Size(m_to_pos_1) != 0)
         {
-            m_to_pos_2 = m_to.Size(m_to_pos_1) - 1;
-            auto to_card  = m_to.Get(m_to_pos_1, m_to_pos_2);
+            auto to_card  = m_to.Get(m_to_pos_1, m_to_pos_2 - 1);
             auto to_color = GetColor(to_card.GetSuit());
             if (from_color == to_color)
             {
                 return false;
             }
-
-            ++m_to_pos_2;
         }
 
         return MoveCommand<From, To>(m_from, m_from_pos_1, m_from_pos_2, m_to, m_to_pos_1, m_to_pos_2).Execute();
@@ -120,6 +161,19 @@ public:
         }
 
         auto m_to_pos_2 = m_to.Size(m_to_pos_1);
+        if (m_to.Size(m_to_pos_1) != 0)
+        {
+            auto to_card = m_to.Get(m_to_pos_1, m_to_pos_2 - 1);
+            if (from_card.GetRank() != GetNextRank(to_card.GetRank()))
+            {
+                return false;
+            }
+        }
+        else if (from_card.GetRank() != LIBCARD::CardRank::ACE)
+        {
+            return false;
+        }
+
         return MoveCommand<From, Homecell>(m_from, m_from_pos_1, m_from_pos_2, m_to, m_to_pos_1, m_to_pos_2).Execute();
     }
 
