@@ -103,6 +103,10 @@ class ValidMoveCommand : public Command
                 {
                     return false;
                 }
+                if (GetNextRank(from_card.GetRank()) != to_card.GetRank())
+                {
+                    return false;
+                }
             }
 
             return MoveCommand<From, To>(m_from, m_from_pos_1, m_from_pos_2, m_to, m_to_pos_1, m_to_pos_2).Execute();
