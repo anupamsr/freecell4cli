@@ -3,6 +3,7 @@
 
 #include "MoveCommand.h"
 #include "Homecell.h"
+#include "Freecell.h"
 
 namespace FREECELL
 {
@@ -126,6 +127,43 @@ private:
     From& m_from;
     size_t m_from_pos;
     Homecell& m_to;
+};
+
+template<typename From>
+class ValidMoveCommand<From, Freecell> : public Command
+{
+public:
+    ValidMoveCommand(From& _from, const size_t& _from_pos, Freecell& _to, const size_t& _to_pos)
+        : m_from(_from),
+        m_from_pos(_from_pos),
+        m_to(_to),
+        m_to_pos(_to_pos)
+    {}
+
+    bool Execute()
+    {
+        auto m_from_pos_1 = m_from_pos - 1;
+
+        if (m_from.Size(m_from_pos_1) == 0)
+        {
+            return false;
+        }
+
+        auto m_from_pos_2 = m_from.Size(m_from_pos_1) - 1;
+        auto m_to_pos_1   = m_to_pos - 1;
+        if (m_to.Size(m_to_pos_1) != 0)
+        {
+            return false;
+        }
+
+        return MoveCommand<From, Freecell>(m_from, m_from_pos_1, m_from_pos_2, m_to, m_to_pos_1, 0).Execute();
+    }
+
+private:
+    From& m_from;
+    size_t m_from_pos;
+    Freecell& m_to;
+    size_t m_to_pos;
 };
 }
 
