@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 2.8)
 
 project(LibCard)
 
+find_package(Curses)
+include_directories(${CURSES_INCLUDE_DIRS})
+
 add_executable(${PROJECT_NAME}
     "main.cpp"
     "Card.h"
@@ -27,6 +30,7 @@ add_executable(${PROJECT_NAME}
     "Deck.cpp"
     )
 
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
 
 if(MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4)
