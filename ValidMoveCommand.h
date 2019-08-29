@@ -2,8 +2,6 @@
 #define VALIDMOVECOMMAND_H_
 
 #include "MoveCommand.h"
-#include "Homecell.h"
-#include "Freecell.h"
 
 namespace FREECELL
 {

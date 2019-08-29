@@ -1,9 +1,8 @@
-#include "MoveCommand.h"
+#include <random>
+#include <functional>
 #include "GameScreen.h"
 #include "HelpScreen.h"
 #include "StdIn.h"
-#include <random>
-#include <functional>
 
 template<class T = std::mt19937, std::size_t N = T::state_size>
 auto ProperlySeededRandomEngine()->typename std::enable_if<!!N, T>::type

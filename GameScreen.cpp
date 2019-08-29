@@ -1,4 +1,5 @@
 #include "GameScreen.h"
+#include <iostream>
 
 void GameScreen::Update(const FREECELL::Board& _board)
 {

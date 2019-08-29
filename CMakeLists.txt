@@ -1,18 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(LibCard)
+project(freecell4cli)
 
 find_package(Curses)
 include_directories(${CURSES_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME}
     "main.cpp"
-    "Card.h"
-    "Card.cpp"
-    "CardCollection.h"
     "Board.h"
     "Board.cpp"
-    "Deck.h"
     "Homecell.h"
     "Freecell.h"
     "PlayArea.h"
@@ -27,10 +23,11 @@ add_executable(${PROJECT_NAME}
     "HelpScreen.h"
     "GameScreen.cpp"
     "ValidMoveCommand.h"
-    "Deck.cpp"
     )
 
-target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
+add_subdirectory("LibCard")
+
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES} "Card")
 
 if(MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4)

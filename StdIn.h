@@ -3,7 +3,6 @@
 
 #include "Input.h"
 #include <iostream>
-#include <cctype>
 #include <algorithm>
 
 class StdIn : public Input

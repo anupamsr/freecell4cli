@@ -4,7 +4,6 @@
 #include "Output.h"
 #include "Board.h"
 #include <vector>
-#include <iostream>
 
 class GameScreen : public Output
 {

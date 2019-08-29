@@ -1,8 +1,8 @@
 #ifndef PLAYAREA_H_
 #define PLAYAREA_H_
 
-#include "CardCollection.h"
-#include "Deck.h"
+#include "LibCard/CardCollection.h"
+#include "LibCard/Deck.h"
 #include "Constants.h"
 
 namespace FREECELL

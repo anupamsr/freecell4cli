@@ -2,7 +2,8 @@
 #define MOVECOMMAND_H_
 
 #include "Command.h"
-#include "CardCollection.h"
+#include "LibCard/Card.h"
+#include <cstddef>
 
 namespace FREECELL
 {

@@ -2,8 +2,6 @@
 #define HELPSCREEN_H_
 
 #include "Output.h"
-#include "Board.h"
-#include <vector>
 #include <iostream>
 
 class HelpScreen : public Output

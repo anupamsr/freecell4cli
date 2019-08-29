@@ -1,7 +1,7 @@
 #ifndef FREECELL_H_
 #define FREECELL_H_
 
-#include "CardCollection.h"
+#include "LibCard/CardCollection.h"
 #include "Constants.h"
 
 namespace FREECELL

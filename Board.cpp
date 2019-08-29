@@ -1,5 +1,5 @@
 #include "Board.h"
-#include "Deck.h"
+#include "LibCard/Deck.h"
 #include "ValidMoveCommand.h"
 
 namespace FREECELL
