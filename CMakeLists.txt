@@ -1,36 +1,36 @@
-cmake_minimum_required (VERSION 3.1)
-project (freecell4cli CXX)
+cmake_minimum_required(VERSION 2.8)
 
-set(CMAKE_CXX_STANDARD 14)
-add_definitions(-Wall -Wextra -pedantic -Weffc++ -Wno-deprecated-declarations)
+project(freecell4cli)
 
-set(BUILD_WITH_CURSES FALSE)
+find_package(Curses)
+include_directories(${CURSES_INCLUDE_DIRS})
 
-list(APPEND Sources
+add_executable(${PROJECT_NAME}
     "main.cpp"
-    "Card.h"
-    "Deck.h"
     "Board.h"
-    "Painter.h"
-    "Card.cpp"
-    "Deck.cpp"
     "Board.cpp"
+    "Homecell.h"
+    "Freecell.h"
+    "PlayArea.h"
+    "PlayArea.cpp"
+    "Constants.h"
+    "Command.h"
+    "MoveCommand.h"
+    "GameScreen.h"
+    "Input.h"
+    "StdIn.h"
+    "Output.h"
+    "HelpScreen.h"
+    "GameScreen.cpp"
+    "ValidMoveCommand.h"
     )
 
-if(BUILD_WITH_CURSES)
-    list(APPEND Sources
-        "Curses.h"
-        "Curses.cpp"
-        )
-    add_definitions(-DBUILD_WITH_CURSES=${BUILD_WITH_CURSES})
-    find_package(Curses)
-    include_directories(${CURSES_INCLUDE_DIRS})
-    add_executable(${PROJECT_NAME} ${Sources})
-    target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
+add_subdirectory("LibCard")
+
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES} "Card")
+
+if(MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4)
 else()
-    list(APPEND Sources
-        "StdOut.h"
-        "StdOut.cpp"
-        )
-    add_executable(${PROJECT_NAME} ${Sources})
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Werror -Weffc++)
 endif()

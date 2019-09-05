@@ -1,27 +1,30 @@
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef BOARD_H_
+#define BOARD_H_
 
-#include <vector>
-#include <deque>
-#include "Deck.h"
-#include "Painter.h"
+#include "Freecell.h"
+#include "Homecell.h"
+#include "PlayArea.h"
+#include <string>
 
-namespace FreeCell
+namespace FREECELL
 {
 class Board
 {
-public:
-    Board();
-    void                           Place(const Deck& _deck);
-    void                           Paint(const Painter& _painter) const;
-    std::vector<std::deque<Card> > GetColumns() const;
-    std::vector<std::deque<Card> > GetFreecell() const;
-    std::vector<std::deque<Card> > GetHomecell() const;
+    public:
+        Board();
+        void Update(std::vector<std::vector<LIBCARD::Card> >& _display) const;
+        void Place(LIBCARD::Deck& _deck);
+        bool Process(const std::string& _input,
+                     std::string      & _err_msg);
+        bool AutoCheck(std::string& _err_msg);
+        void Clear();
 
-private:
-    std::vector<std::deque<Card> > mColumns;
-    std::vector<std::deque<Card> > mFreecell;
-    std::vector<std::deque<Card> > mHomecell;
+    private:
+        Freecell m_freecell;
+        Homecell m_homecell;
+        PlayArea m_playarea;
+        bool m_is_updatable;
 };
 }
-#endif // BOARD_H
+
+#endif // ifndef BOARD_H_
