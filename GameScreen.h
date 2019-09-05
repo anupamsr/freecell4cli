@@ -12,7 +12,8 @@ class GameScreen : public Output
 
     public:
         GameScreen()
-            : m_display() {}
+            : m_display()
+        {}
 
         void Update(const FREECELL::Board& _board);
         void Draw() const;

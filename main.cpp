@@ -18,6 +18,7 @@ auto ProperlySeededRandomEngine()->typename std::enable_if<!!N, T>::type
 int main()
 {
     LIBCARD::Deck d;
+
     d.RemoveCard(LIBCARD::JOCKER_CARD);
     auto rng = ProperlySeededRandomEngine();
     d.Shuffle(rng);
@@ -41,7 +42,7 @@ int main()
         {
             break;
         }
-        else if (input[0] == 'h')
+        else if (input[0] == 'h' || input[0] == '?')
         {
             h.Draw();
         }
@@ -59,6 +60,20 @@ int main()
         {
             std::string err_msg;
             bool success = b.Process(input, err_msg);
+            if (success)
+            {
+                g.Update(b);
+                g.Draw();
+            }
+            else
+            {
+                g.ShowStatus(err_msg);
+            }
+        }
+        else if (input[0] == 'c')
+        {
+            std::string err_msg;
+            bool success = b.AutoCheck(err_msg);
             if (success)
             {
                 g.Update(b);

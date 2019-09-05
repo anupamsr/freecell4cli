@@ -12,9 +12,11 @@ class CardCollection
 {
     public:
         CardCollection()
-            : m_cards(size, std::vector<Card>()) {}
+            : m_cards(size, std::vector<Card>())
+        {}
 
-        ~CardCollection() {}
+        ~CardCollection()
+        {}
 
         Card Get(const size_t& _from_pos_1, const size_t& _from_pos_2) const
         {

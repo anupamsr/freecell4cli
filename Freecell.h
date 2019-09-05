@@ -9,9 +9,11 @@ namespace FREECELL
 class Freecell : public LIBCARD::CardCollection<FREE_CELL_SIZE>
 {
     public:
-        Freecell() {}
+        Freecell()
+        {}
 
-        ~Freecell() {}
+        ~Freecell()
+        {}
 
     private:
 };

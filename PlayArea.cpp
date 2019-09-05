@@ -2,9 +2,11 @@
 
 namespace FREECELL
 {
-PlayArea::PlayArea() {}
+PlayArea::PlayArea()
+{}
 
-PlayArea::~PlayArea() {}
+PlayArea::~PlayArea()
+{}
 
 void PlayArea::Add(LIBCARD::Deck& _deck)
 {

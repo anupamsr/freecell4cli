@@ -9,7 +9,8 @@ class Output
          * @param _input
          */
         virtual void Draw() const = 0;
-        virtual ~Output() {}
+        virtual ~Output()
+        {}
 };
 
 #endif // ifndef OUTPUT_H

@@ -4,9 +4,11 @@ namespace LIBCARD
 {
 Card::Card(const CardSuit& _suit, const CardRank& _rank)
     : m_suit(_suit),
-    m_rank(_rank) {}
+    m_rank(_rank)
+{}
 
-Card::~Card() {}
+Card::~Card()
+{}
 
 CardSuit Card::GetSuit() const
 {

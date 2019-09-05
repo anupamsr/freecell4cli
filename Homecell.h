@@ -9,9 +9,11 @@ namespace FREECELL
 class Homecell : public LIBCARD::CardCollection<HOME_CELL_SIZE>
 {
     public:
-        Homecell() {}
+        Homecell()
+        {}
 
-        ~Homecell() {}
+        ~Homecell()
+        {}
 
     private:
 };

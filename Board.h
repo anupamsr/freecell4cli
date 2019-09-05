@@ -16,6 +16,7 @@ class Board
         void Place(LIBCARD::Deck& _deck);
         bool Process(const std::string& _input,
                      std::string      & _err_msg);
+        bool AutoCheck(std::string& _err_msg);
         void Clear();
 
     private:

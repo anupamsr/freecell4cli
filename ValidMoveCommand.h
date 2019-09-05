@@ -77,7 +77,8 @@ class ValidMoveCommand : public Command
             : m_from(_from),
             m_from_pos(_from_pos),
             m_to(_to),
-            m_to_pos(_to_pos) {}
+            m_to_pos(_to_pos)
+        {}
 
         bool Execute()
         {
@@ -124,7 +125,8 @@ class ValidMoveCommand<From, Homecell> : public Command
         ValidMoveCommand(From& _from, const size_t& _from_pos, Homecell& _to)
             : m_from(_from),
             m_from_pos(_from_pos),
-            m_to(_to) {}
+            m_to(_to)
+        {}
 
         bool Execute()
         {
@@ -191,7 +193,8 @@ class ValidMoveCommand<From, Freecell> : public Command
             : m_from(_from),
             m_from_pos(_from_pos),
             m_to(_to),
-            m_to_pos(_to_pos) {}
+            m_to_pos(_to_pos)
+        {}
 
         bool Execute()
         {

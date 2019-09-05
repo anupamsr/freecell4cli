@@ -36,7 +36,6 @@ void GameScreen::ShowPrompt()
 std::string GameScreen::GetOutputStr(const LIBCARD::Card& _card)
 {
     auto rank = _card.GetRank();
-
     std::string output;
 
     switch (rank) {

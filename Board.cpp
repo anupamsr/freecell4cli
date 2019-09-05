@@ -8,7 +8,8 @@ Board::Board()
     : m_freecell(),
     m_homecell(),
     m_playarea(),
-    m_is_updatable(true) {}
+    m_is_updatable(true)
+{}
 
 void Board::Update(std::vector<std::vector<LIBCARD::Card> >& _display) const
 {
@@ -73,6 +74,39 @@ void Board::Update(std::vector<std::vector<LIBCARD::Card> >& _display) const
 void Board::Place(LIBCARD::Deck& _deck)
 {
     m_playarea.Add(_deck);
+}
+
+bool Board::AutoCheck(std::string& _err_msg)
+{
+    std::string err_msg;
+    bool no_possible_move = false;
+    bool has_moved        = false;
+
+    while (!no_possible_move)
+    {
+        no_possible_move = true;
+        std::string moves[PLAY_AREA_SIZE] = { "m1h", "m2h", "m3h", "m4h", "m5h", "m6h", "m7h", "m8h" };
+        for (auto const& move : moves)
+        {
+            auto success = Process(move, err_msg);
+            if (success)
+            {
+                has_moved        = true;
+                no_possible_move = false;
+            }
+        }
+    }
+    if (has_moved)
+    {
+        m_is_updatable = true;
+    }
+    else
+    {
+        _err_msg       = "Nothing to move";
+        m_is_updatable = false;
+    }
+
+    return has_moved;
 }
 
 bool Board::Process(const std::string& _input, std::string& _err_msg)

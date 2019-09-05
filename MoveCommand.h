@@ -17,7 +17,8 @@ class MoveCommand : public Command
             m_from_pos_2(_from_pos_2),
             m_to(_to),
             m_to_pos_1(_to_pos_1),
-            m_to_pos_2(_to_pos_2) {}
+            m_to_pos_2(_to_pos_2)
+        {}
 
         bool Execute()
         {
