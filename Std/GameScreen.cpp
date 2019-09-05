@@ -16,6 +16,8 @@ void GameScreen::Update(const FREECELL::Board& _board)
 
 void GameScreen::Draw() const
 {
+    std::cout << std::endl;
+
     for (size_t j = 0; j < 7; ++j)
     {
         std::cout << GetOutputStr(m_display[j][0]) << "  ";

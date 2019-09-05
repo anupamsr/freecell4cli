@@ -24,6 +24,7 @@ void GameScreen::Update(const FREECELL::Board& _board)
 void GameScreen::Draw() const
 {
     attrset(COLOR_PAIR(1));
+    addstr("\n\r");
     for (size_t j = 0; j < 7; ++j)
     {
         PrintCard(m_display[j][0]);

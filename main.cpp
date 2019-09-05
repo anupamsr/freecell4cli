@@ -56,6 +56,10 @@ int main()
             g.Update(b);
             g.Draw();
         }
+        else if (input[0] == 's')
+        {
+            g.Draw();
+        }
         else if (input[0] == 'm')
         {
             std::string err_msg;
