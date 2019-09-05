@@ -60,6 +60,7 @@ void GameScreen::Draw() const
 
 void GameScreen::ShowStatus(const std::string& _status)
 {
+    addstr("\n\r");
     if (!_status.empty())
     {
         attron(A_BOLD);

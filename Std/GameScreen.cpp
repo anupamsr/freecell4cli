@@ -16,20 +16,34 @@ void GameScreen::Update(const FREECELL::Board& _board)
 
 void GameScreen::Draw() const
 {
-    for (size_t i = 0; i < m_display[0].size(); ++i)
+    for (size_t j = 0; j < 7; ++j)
     {
-        for (size_t j = 0; j < 8; ++j)
+        std::cout << GetOutputStr(m_display[j][0]) << "  ";
+    }
+
+    std::cout << GetOutputStr(m_display[7][0]) << std::endl;
+    for (size_t j = 0; j < 7; ++j)
+    {
+        std::cout << "---  ";
+    }
+
+    std::cout << "---" << std::endl;
+    for (size_t i = 1; i < m_display[0].size(); ++i)
+    {
+        for (size_t j = 0; j < 7; ++j)
         {
             std::cout << GetOutputStr(m_display[j][i]);
             std::cout << ", ";
         }
 
-        std::cout << std::endl;
+        std::cout << GetOutputStr(m_display[7][i]) << std::endl;
     }
 }
 
 void GameScreen::ShowStatus(const std::string& _status)
 {
+    std::cerr << std::endl;
+
     if (!_status.empty())
     {
         std::cerr << "STATUS: " << _status << std::endl;
@@ -38,7 +52,7 @@ void GameScreen::ShowStatus(const std::string& _status)
 
 void GameScreen::ShowPrompt()
 {
-    std::cout << ">> ";
+    std::cout << std::endl << ">> ";
 }
 
 std::string GetOutputStr(const LIBCARD::Card& _card)

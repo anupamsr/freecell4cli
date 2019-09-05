@@ -16,7 +16,6 @@ void Prompt::GetString(std::string& _input) const
     attron(COLOR_PAIR(0));
     char input[80];
     getstr(input);
-    addstr("\n\r");
     _input = input;
     auto to_lower = [](const auto c) {
                         return std::tolower(c);
