@@ -2,29 +2,12 @@
 #define VALIDMOVECOMMAND_H_
 
 #include "MoveCommand.h"
+#include "Helper.h"
+#include "Homecell.h"
+#include "Freecell.h"
 
 namespace FREECELL
 {
-enum class CardColor {
-    NOTHING, RED, BLACK
-};
-
-CardColor GetColor(const LIBCARD::CardSuit& _suit)
-{
-    switch (_suit) {
-    case LIBCARD::CardSuit::CLUBS:
-    case LIBCARD::CardSuit::SPADES:
-        return CardColor::BLACK;
-
-    case LIBCARD::CardSuit::HEARTS:
-    case LIBCARD::CardSuit::DIAMONDS:
-        return CardColor::RED;
-
-    default:
-        return CardColor::NOTHING;
-    }
-}
-
 LIBCARD::CardRank GetNextRank(const LIBCARD::CardRank& _rank)
 {
     switch (_rank) {

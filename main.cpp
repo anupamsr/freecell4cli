@@ -2,7 +2,7 @@
 #include <functional>
 #include "GameScreen.h"
 #include "HelpScreen.h"
-#include "StdIn.h"
+#include "Prompt.h"
 
 template<class T = std::mt19937, std::size_t N = T::state_size>
 auto ProperlySeededRandomEngine()->typename std::enable_if<!!N, T>::type
@@ -28,7 +28,7 @@ int main()
     g.Update(b);
     g.Draw();
     HelpScreen h;
-    StdIn in;
+    Prompt     in;
     while (true)
     {
         std::string input;

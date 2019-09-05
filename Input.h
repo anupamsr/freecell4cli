@@ -1,5 +1,5 @@
-#ifndef INPUT_H
-#define INPUT_H
+#ifndef INPUT_H_
+#define INPUT_H_
 
 #include <string>
 
@@ -11,8 +11,7 @@ class Input
          * @param _input
          */
         virtual void GetString(std::string& _input) const = 0;
-        virtual ~Input()
-        {}
+        virtual ~Input();
 };
 
-#endif // ifndef INPUT_H
+#endif // ifndef INPUT_H_

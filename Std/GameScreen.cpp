@@ -1,5 +1,13 @@
-#include "GameScreen.h"
+#include "../GameScreen.h"
 #include <iostream>
+
+static std::string GetOutputStr(const LIBCARD::Card& _card);
+GameScreen::GameScreen()
+    : m_display()
+{}
+
+GameScreen::~GameScreen()
+{}
 
 void GameScreen::Update(const FREECELL::Board& _board)
 {
@@ -33,7 +41,7 @@ void GameScreen::ShowPrompt()
     std::cout << ">> ";
 }
 
-std::string GameScreen::GetOutputStr(const LIBCARD::Card& _card)
+std::string GetOutputStr(const LIBCARD::Card& _card)
 {
     auto rank = _card.GetRank();
     std::string output;

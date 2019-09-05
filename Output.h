@@ -1,5 +1,5 @@
-#ifndef OUTPUT_H
-#define OUTPUT_H
+#ifndef OUTPUT_H_
+#define OUTPUT_H_
 
 class Output
 {
@@ -9,8 +9,7 @@ class Output
          * @param _input
          */
         virtual void Draw() const = 0;
-        virtual ~Output()
-        {}
+        virtual ~Output();
 };
 
-#endif // ifndef OUTPUT_H
+#endif // ifndef OUTPUT_H_

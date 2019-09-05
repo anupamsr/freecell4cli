@@ -7,8 +7,7 @@ class Command
 {
     public:
         virtual bool Execute() = 0;
-        virtual ~Command()
-        {}
+        virtual ~Command();
 };
 }
 

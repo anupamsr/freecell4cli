@@ -7,14 +7,9 @@
 
 class GameScreen : public Output
 {
-    private:
-        static std::string GetOutputStr(const LIBCARD::Card& _card);
-
     public:
-        GameScreen()
-            : m_display()
-        {}
-
+        GameScreen();
+        ~GameScreen();
         void Update(const FREECELL::Board& _board);
         void Draw() const;
         void ShowStatus(const std::string& _status);
